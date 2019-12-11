@@ -1,0 +1,10 @@
+./setup.sh aws cluster_template.json /dev/nvme1n1 1 root cloudera | tee -a install.log24 2>&1
+python create_cluster.py `hostname` cluster_template.json.6 myRSAkey https://archive.cloudera.com/cm6/6.3.1/redhat7/yum/
+
+rm -fr /opt/cloudera/cem/minifi/minifi-0.6.0.1.1.0.0-172
+rm -fr /opt/cloudera/cem/efm/efm-1.0.0.1.1.0.0-172
+rm -fr /etc/yum.repos.d/cloudera-manager.repo
+rm -fr /opt/cloudera/efm
+rm -fr /opt/cloudera/minifi
+rm -fr /etc/init.d/efm
+rm -fr myRSAkey*
