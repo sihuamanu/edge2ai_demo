@@ -1,4 +1,5 @@
 ./setup.sh aws cluster_template.json /dev/nvme1n1 1 root cloudera | tee -a install.log24 2>&1
+
 python create_cluster.py `hostname` cluster_template.json.6 myRSAkey https://archive.cloudera.com/cm6/6.3.1/redhat7/yum/
 
 rm -fr /opt/cloudera/cem/minifi/minifi-0.6.0.1.1.0.0-172
@@ -8,5 +9,7 @@ rm -fr /opt/cloudera/efm
 rm -fr /opt/cloudera/minifi
 rm -fr /etc/init.d/efm
 rm -fr myRSAkey*
+
+python mqtt.iot_simulator.py mqtt.iot.config
 
 spark-submit   --master local[2]   --jars kudu-spark2_2.11-1.9.0.jar,spark-core_2.11-1.5.2.logging.jar   --packages org.apache.spark:spark-streaming-kafka_2.11:1.6.3   spark.iot.py
