@@ -8,3 +8,5 @@ rm -fr /opt/cloudera/efm
 rm -fr /opt/cloudera/minifi
 rm -fr /etc/init.d/efm
 rm -fr myRSAkey*
+
+spark-submit   --master local[2]   --jars kudu-spark2_2.11-1.9.0.jar,spark-core_2.11-1.5.2.logging.jar   --packages org.apache.spark:spark-streaming-kafka_2.11:1.6.3   spark.iot.py
